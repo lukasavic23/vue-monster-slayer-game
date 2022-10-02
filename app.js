@@ -44,12 +44,18 @@ const app = Vue.createApp({
       } else if (value <= 0) {
         this.winner = "monster";
       }
+      if (value <= 0) {
+        this.playerHealth = 0;
+      }
     },
     monsterHealth(value) {
       if (value <= 0 && this.playerHealth <= 0) {
         this.winner = "draw";
       } else if (value <= 0) {
         this.winner = "player";
+      }
+      if (value <= 0) {
+        this.monsterHealth = 0;
       }
     },
   },
@@ -60,7 +66,6 @@ const app = Vue.createApp({
       this.monsterHealth -= attackValue;
       this.attackPlayer();
       this.addLogMessage("player", "attack", attackValue);
-      console.log(this.monsterHealth);
     },
     attackPlayer() {
       const attackValue = getRandomValue(8, 15);
